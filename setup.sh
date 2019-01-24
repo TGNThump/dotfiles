@@ -34,7 +34,7 @@ for filename in .*; do
 done
 
 if [[ $TERM == "cygwin" ]]; then
-	checkDeps gcc
+	checkDeps gcc winpty
 	link src/cygwin_ls_readdir.c /usr/local
 	link bin/cygwin-ls.py /usr/local
 fi
