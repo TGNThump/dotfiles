@@ -1,11 +1,15 @@
-alias sublime="/c/Program\ Files/Sublime\ Text\ 3/sublime_text.exe"
 alias path="echo $PATH | tr : '\n'"
 
 function gitfunc(){
-	if [[ $1 == "unstage" ]]; then
+	if [[ $1 == "unstage" || $1 == "rm" ]]; then
 		command git reset HEAD "$@"
 	else
 		command git "$@"
 	fi
 }
 alias git=gitfunc
+
+if [[ $MSYSTEM == "MSYS" ]]; then
+	alias ls="LC_COLLATE=C /usr/local/bin/cygwin-ls.py"
+	alias sublime="/c/Program\ Files/Sublime\ Text\ 3/sublime_text.exe"
+fi

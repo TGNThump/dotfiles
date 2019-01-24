@@ -6,23 +6,38 @@ function checkDeps(){
 	done
 }
 
+function link(){
+	echo ${2:-~}/$1;
+	mkdir -p $(dirname ${2:-~}/$1)
+	if [[ -f ${2:-~}/$1 ]]; then
+		rm ${2:-~}/$1
+	fi
+	ln $1 ${2:-~}/$1
+}
+
 pushd $(pwd)
 cd "$(dirname "${BASH_SOURCE}")"
 
 # Generate SSH and GPG Keys and Configure Git.
-checkDeps keybase gpg git ssh-add ssh-agent tmux
+checkDeps keybase gpg git ssh-add ssh-agent tmux python
 source genkeys.sh
 
 # Pull the latest version of this repo.
 git pull origin master
 
+
+
 for filename in .*; do
 	if [[ $filename != "." && $filename != ".." && $filename != ".git" ]]; then
-		echo $filename
-		rm ~/$filename
-		ln $filename ~/$filename
+		link $filename
 	fi
 done
+
+if [[ $TERM == "cygwin" ]]; then
+	checkDeps gcc
+	link src/cygwin_ls_readdir.c /usr/local
+	link bin/cygwin-ls.py /usr/local
+fi
 
 source ~/.bashrc
 popd
