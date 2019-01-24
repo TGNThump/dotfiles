@@ -1,0 +1,11 @@
+alias sublime="/c/Program\ Files/Sublime\ Text\ 3/sublime_text.exe"
+alias path="echo $PATH | tr : '\n'"
+
+function gitfunc(){
+	if [[ $1 == "unstage" ]]; then
+		command git reset HEAD "$@"
+	else
+		command git "$@"
+	fi
+}
+alias git=gitfunc
