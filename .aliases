@@ -1,4 +1,6 @@
-alias path="echo $PATH | tr : '\n'"
+function path(){
+	echo $PATH | tr : '\n'
+}
 
 function gitfunc(){
 	if [[ $1 == "unstage" || $1 == "rm" ]]; then
@@ -16,6 +18,7 @@ if [[ $MSYSTEM == "MSYS" ]]; then
 	alias vue='winpty vue.cmd'
 	function nano() { winpty nano "$@" ;} && export -f nano
 	function python() { winpty python "$@" ;} && export -f python
+	function jshell() { winpty jshell "$@" ;} && export -f jshell
 fi
 
 function homestead() {
