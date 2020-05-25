@@ -33,6 +33,9 @@ sudo apt-get install golang -y > /dev/null
 echo 'Installing stow.'
 sudo apt-get install stow -y > /dev/null
 
+echo 'Installing locale.'
+sudo locale-gen en_GB.UTF-8 > /dev/null
+
 echo 'Installing keybase.'
 sudo curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb -s
 sudo sudo apt-get install ./keybase_amd64.deb -y > /dev/null
