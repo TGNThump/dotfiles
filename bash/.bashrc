@@ -1,4 +1,7 @@
-# If not running interactively, don't do anything
+if [ -f /opt/homebrew/bin/bash ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+# If not running interactively, don't do anything else
 case $- in
     *i*) ;;
       *) return;;
