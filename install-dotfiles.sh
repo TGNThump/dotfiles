@@ -3,7 +3,9 @@
 pushd $(pwd) > /dev/null
 cd "$(dirname "${BASH_SOURCE}")"
 
-rm ~/.bashrc
+if [ -f ~/.bashrc ]; then
+  rm ~/.bashrc
+fi
 
 git config --global core.excludesfile ~/.gitignore
 
