@@ -4,7 +4,9 @@ case $- in
       *) return;;
 esac
 
-[[ $TERM != "screen" ]] && [ -z "$TMUX" ] && exec tmux
+if [ -z "$INTELLIJ_ENVIRONMENT_READER" ] && [ "$TERM_PROGRAM" != "vscode" ] && [ "$TERM" != "screen" ] && [ -z "$TMUX" ]; then
+    exec tmux
+fi
 
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
