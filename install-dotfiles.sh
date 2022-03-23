@@ -5,7 +5,9 @@ cd "$(dirname "${BASH_SOURCE}")"
 
 rm ~/.bashrc
 
-for f in $(find ./ -maxdepth 1 -type d | grep -Ev '.git$|bin|appdata' | cut -d '/' -f 2 )
+git config --global core.excludesfile ~/.gitignore
+
+for f in $(find ./ -maxdepth 1 -type d | grep -Ev '\.git$|bin|appdata|\.idea' | rev | cut -d '/' -f 1 | rev )
 do
     stow -R $f -t ~/
 done
