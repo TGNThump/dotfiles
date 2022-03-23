@@ -41,7 +41,10 @@ export LANG=en_GB.UTF-8
 export LANGUAGE=en_GB:en
 export LC_ALL=en_GB.UTF-8
 export GPG_TTY=$(tty)
-export DOCKER_HOST=tcp://localhost:2375
+
+if [ -x "$(command -v cmd.exe)" ]; then
+    export DOCKER_HOST=tcp://localhost:2375
+fi
 
 function _update_ps1() {
     PS1="$($GOPATH/bin/powerline-go -modules venv,host,ssh,cwd,perms,git,svn,hg,jobs,exit,root -theme ${HOME}/.powerlinetheme.json -error $?)"
