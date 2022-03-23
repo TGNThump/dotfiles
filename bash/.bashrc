@@ -1,6 +1,10 @@
 if [ -f /opt/homebrew/bin/bash ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+if [ -f ~/bin ]; then
+    PATH=~/bin:$PATH
+fi
 # If not running interactively, don't do anything else
 case $- in
     *i*) ;;
